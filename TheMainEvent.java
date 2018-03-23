@@ -1,8 +1,6 @@
 package dungeonsndumbasses;
 
 public class TheMainEvent {
-		//Pseudo code
-		
 		/* Determine Encounter Data
 		run when new room entered
 		3-4 monsters max per room
@@ -33,24 +31,20 @@ public class TheMainEvent {
 			
 	
 			//type
-			private int num;
+			private int num = 0;
 	
 			//data
-			private int Alive;
 			private int Damage;
 			private int Health;
 			private boolean Healer;
 			//data
 			
-			void typesetter(int type) {
+			void datasetter(int type) {
 				num = type;
-			}
-			
-			void datasetter() {
+				
 				//TYPE 1 GRUNT
 				if(num == 1)
 				{
-					Alive = 1;
 					Damage = 8;
 					Health = 20;
 					Healer = false;
@@ -59,7 +53,6 @@ public class TheMainEvent {
 				//TYPE 2 WARRIOR
 				if(num == 2)
 				{
-					Alive = 1;
 					Damage = 10;
 					Health = 50;
 					Healer = false;
@@ -68,7 +61,6 @@ public class TheMainEvent {
 				//TYPE 3 CASTER
 				if(num == 3)
 				{
-					Alive = 1;
 					Damage = 20;
 					Health = 30;
 					Healer = false;
@@ -77,8 +69,7 @@ public class TheMainEvent {
 				//TYPE 4 HEALER
 				if(num == 4)
 				{
-					Alive = 1;
-					Damage = 20;
+					Damage = 10;
 					Health = 20;
 					Healer = true;
 				}
@@ -86,7 +77,6 @@ public class TheMainEvent {
 				//TYPE 5 EPIC
 				if(num == 5)
 				{
-					Alive = 1;
 					Damage = 34;
 					Health = 100;
 					Healer = false;
@@ -95,33 +85,38 @@ public class TheMainEvent {
 				//TYPE 0 DEAD AS FUCK
 				if(num == 0)
 				{
-					Alive = 0;
 					Damage = 0;
 					Health = 0;
 					Healer = false;
 				}
 			}
 			
-			
-			
-			int HitRecieve(int playerdamage) {
+			//changes mobs health with players damage
+			void HitRecieve(int playerdamage) {
 				Health = Health - playerdamage;
 			    if(Health <= 0)
 				{
-					num = 0;
+					datasetter(0);
 				}
-			    return Health;
 			}
 			
+			//this is used when the healer heals an ally
+			void HealRecieve() {
+				Health = Health + 10;
+			}
 			
 			int DamageGet() {
-					return(Damage);
-			};
+					return Damage;
+			}
 			
+			//to tell player the mobs health
 			int HealthGet() {
-				return(Health);
-			};
+				return Health;
+			}
 			
+			boolean HealerGet() {
+				return Healer;
+			}
 			
 			
 		
