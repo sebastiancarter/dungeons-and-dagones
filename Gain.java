@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class Gain {	
-public static void main(String[] args) {	
  int Potions, Weapons, Resources, isChestopen;
  String Common, uncommon, rare, epic, legendary;
  Potions = 1;
@@ -21,4 +20,3 @@ public static void main(String[] args) {
    System.out.print("placeholder");
   }
  }
-}
