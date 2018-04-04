@@ -1,2 +1,2 @@
-# dungeons-and-dumbasses
-# The DREAM the TEAM the DUMBASSES
+# dungeons-and-dagones
+# The DREAM the TEAM the SPELNG AIRORS
