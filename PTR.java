@@ -17,9 +17,23 @@ public class PTR {
  	int	encounter = 0; 
 	 	int WeaponDamage = 2; 
 	 	int chest = 0; 
-		int rooms = 0; 
+		int rooms = 0;
+		int woodensword = 10;
+		int ironsword = 20;
+		int steelsword = 30;
+		int enchantedsword = 40;
+		int blessedsword = 50;
+		int Godslayer = 60;
+		int DEVELOPERSWORD = 100000;
 	 	RNG rng;
 	 	rng = new RNG();
+	 	int looot = 0;
+	 	L00t loot;
+	 	 loot =	new L00t();
+	 	 int[] lootguy;
+	 	 lootguy = loot.Rewards();
+	 	Monsters monster;
+	 	monster = new Monsters();
 	   //rng.Dice0_20s2();
 	  // int Damage =   rng.Dice0_20s2() + PH;
 	 
@@ -36,7 +50,8 @@ public class PTR {
 	 		 
 			 
 			int bob = input.nextInt(); 
-	 		int bobby = bob; 
+	 		int bobby = bob;
+	 		
 	 		// 
 	 		if(bob == 1) 
 	 		{ 
@@ -54,22 +69,40 @@ public class PTR {
 	  		{ 
 	 			 
 	 			System.out.println("What kind of spell?"); 
+	 			System.out.println("1.   Damage Spell"); 
+	 			System.out.println("2.   Healing Spell");
 	 			int boy = input.nextInt(); 
 		int boi = boy; 
-		System.out.println("1.   Damage Spell"); 
+		         if(Rescources > 29)
+		         {
  			      if(boi == 1) 
-	 			      { 
+ 			      { System.out.println("Which Opponent?");
+ 		 			System.out.println("1.   First Target");
+ 		 			System.out.println("2.   Second Target");
+ 		 			System.out.println("3.   Third Target");
+ 		 			System.out.println("4.   Fourth Target");
+ 		 			int Damage =   rng.Dice0_20s2() + 10;
+ 			 		
 				    	  System.out.println("You attacked and dealt"+  PH  +  WeaponDamage  +  "Damage"); 
 	 			    	  encounter = encounter + 1; 
+	 			    	  Rescources = Rescources - 30;
 		      } 
 	 			System.out.println("2.   Healing Spell"); 
 	 			      if(boi == 2) 
 		      { 
-	 			    	  System.out.println("You casted and healed"+""+"Health"); 
-	 			    	  Health = Health + PH; 
+	 			    	  System.out.println("You casted and healed"+" "+"15"+ " "+"Health"); 
+	 			    	  Health = Health + 15; 
+	 			    	  Rescources = Rescources - 30;
 	 			      } 
 	 			 
-	 		} 
+	 			     if(Rescources < 29)
+	 		  		 {
+	 		  			 System.out.println("You don't have enough Rescources.");
+	 		  			 
+	 		  		 }
+	 		}
+	  		}
+	  		 
 	 		 
 	 		if(bob == 3) 
 	 		{ 
@@ -102,21 +135,26 @@ public class PTR {
 	 
 	 		  		if(encounter == 1) 
 			{ 
-	 			System.out.println("You were attacked and you took"+  PH   +"Damage"); 
+	 			System.out.println("You were attacked and you took"+"  "+  PH   +"  "+"Damage"); 
 				Health = Health - PH; 
 				 
 	 			encounter = encounter - 1; 
 	 			 
 	 if(Health <= 0) 
 	 { 
-	 	System.out.println("GAME OVER, YOU WENT THROUGH"+"  "+  rooms  +"ROOMS"); 
+	 	System.out.println("GAME OVER, YOU WENT THROUGH"+"  "+  rooms  +"  "+"ROOMS"); 
 	 	encounter = encounter + 1; 
  } 
 	 
 	 
 	 		} 
 	 
-	 
+	
+	if(looot == 1)
+	 {
+		chest = chest + 1; 
+		 
+	 }
 	 	if(chest == 1) 
 	 	{ 
 	 		System.out.println("You found a chest and you found"+ PH + "Do you want to take it? (You will drop your current weapon)"); 
