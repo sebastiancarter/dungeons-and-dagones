@@ -18,13 +18,7 @@ public class PTR {
 	 	int WeaponDamage = 2; 
 	 	int chest = 0; 
 		int rooms = 0;
-		int woodensword = 10;
-		int ironsword = 20;
-		int steelsword = 30;
-		int enchantedsword = 40;
-		int blessedsword = 50;
-		int Godslayer = 60;
-		int DEVELOPERSWORD = 100000;
+		int bonusdamage = 10;
 	 	RNG rng;
 	 	rng = new RNG();
 	 	int looot = 0;
@@ -32,21 +26,79 @@ public class PTR {
 	 	 loot =	new L00t();
 	 	 int[] lootguy;
 	 	 lootguy = loot.Rewards();
-	 	Monsters monster;
-	 	monster = new Monsters();
+	 	Monsters monster1;
+	 	monster1 = new Monsters();
+	 	Monsters monster2;
+	 	monster2 = new Monsters();
+	 	Monsters monster3;
+	 	monster3 = new Monsters();
+	 	Monsters monster4;
+	 	monster4 = new Monsters();
+	 	Monsters Setup=new Monsters();
+	 	
+	 	
+	 	
+	 	
+	 	
+	    int	spelldam = 0;
 	   //rng.Dice0_20s2();
 	  // int Damage =   rng.Dice0_20s2() + PH;
 	 
 	 		Scanner input; 
-	 //	do{ 
 			do{ 
-	 		input = new Scanner(System.in); 
+		 	int numMobsAct = 0;
+			int numMobs=Setup.numMonsters();
+			switch(numMobs){
+				case 0:
+				case 1:
+					monster1.datasetter();
+					monster2.dead();
+					monster3.dead();
+					monster4.dead();
+					numMobsAct=1;
+					break;
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+					monster1.datasetter();
+					monster2.datasetter();
+					monster3.dead();
+					monster4.dead();
+					numMobsAct=2;
+					break;
+				case 7:
+				case 8:
+					monster1.datasetter();
+					monster2.datasetter();
+					monster3.datasetter();
+					monster4.dead();
+					numMobsAct=3;
+					break;
+				case 9:
+					monster1.datasetter();
+					monster2.datasetter();
+					monster3.datasetter();
+					monster4.datasetter();
+					numMobsAct=4;
+					break;
+				
+			};
+			do{
+			if(Health <= 0) 
+			 { 
+			 	System.out.println("GAME OVER, YOU WENT THROUGH"+"  "+  rooms  +"  "+"ROOMS"); 
+			 	encounter = encounter + 1; 
+			 }
+			input = new Scanner(System.in); 
  		System.out.println("Menu"); 
 	 		System.out.println("1.  Attack"); 
 			System.out.println("2.  Spell"); 
 	 		System.out.println("3.  Potion"); 
 	 		System.out.println("Health ="+ Health); 
-			System.out.println("Rescources ="+ Rescources); 
+			System.out.println("Rescources ="+ Rescources);
+			System.out.println("You are facing "+numMobsAct+" monsters");
 	 		 
 			 
 			int bob = input.nextInt(); 
@@ -55,37 +107,122 @@ public class PTR {
 	 		// 
 	 		if(bob == 1) 
 	 		{ 
-	 			System.out.println("Which Opponent?");
-	 			System.out.println("1.   First Target");
-	 			System.out.println("2.   Second Target");
-	 			System.out.println("3.   Third Target");
-	 			System.out.println("4.   Fourth Target");
-	 			int Damage =   rng.Dice0_20s2() + PH;
-				System.out.println("You attacked and dealt"+ "  "+  Damage+"  "    + "damage"); 
-	 			encounter = encounter + 1; 
+	 			switch(numMobs){
+				case 0:
+				case 1:
+					System.out.println("Which Opponent?");
+	 				System.out.println("1.   First Target");
+					break;
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+					System.out.println("Which Opponent?");
+	 				System.out.println("1.   First Target");
+	 				System.out.println("2.   Second Target");
+					break;
+				case 7:
+				case 8:
+					System.out.println("Which Opponent?");
+	 				System.out.println("1.   First Target");
+	 				System.out.println("2.   Second Target");
+	 				System.out.println("3.   Third Target");
+					break;
+				case 9:
+					System.out.println("Which Opponent?");
+	 				System.out.println("1.   First Target");
+	 				System.out.println("2.   Second Target");
+	 				System.out.println("3.   Third Target");
+	 				System.out.println("4.   Fourth Target");
+					break;
+				
+			};
+	 			
+	 			int opponent = input.nextInt();
+	 			int Op = opponent;
+	 			if(Op == 1) {
+	 				if(monster1.HealthGet()>0){
+	 					int Damage =   rng.Dice0_20s2() + bonusdamage;
+	 					monster1.HitRecieve(Damage);
+	 					System.out.println("You attacked and dealt"+ "  "+  Damage+"  "    + "damage"); 
+	 					if(monster1.HealthGet()<=0){
+	 						monster1.dead();
+	 						numMobsAct=numMobsAct-1;
+	 					};
+	 					encounter = encounter + 1;
+	 				}else{
+	 					System.out.println("Its already dead");
+	 				};
+	 			}
+	 			if(Op == 2) {
+	 				if(monster2.HealthGet()>0){
+	 					int Damage =   rng.Dice0_20s2() + bonusdamage;
+	 					monster2.HitRecieve(Damage);
+	 					System.out.println("You attacked and dealt"+ "  "+  Damage+"  "    + "damage"); 
+	 					if(monster2.HealthGet()<=0){
+	 						monster2.dead();
+	 						numMobsAct=numMobsAct-1;
+	 					};
+	 					encounter = encounter + 1;
+	 				}else{
+	 					System.out.println("Its already dead");
+	 				};
+	 			}
+	 			if(Op == 3) {
+	 				if(monster3.HealthGet()>0){
+	 					int Damage =   rng.Dice0_20s2() + bonusdamage;
+	 					monster3.HitRecieve(Damage);
+	 					System.out.println("You attacked and dealt"+ "  "+  Damage+"  "    + "damage"); 
+	 					if(monster3.HealthGet()<=0){
+	 						monster3.dead();
+	 						numMobsAct=numMobsAct-1;
+	 					};
+	 					encounter = encounter + 1;
+	 				}else{
+	 					System.out.println("Its already dead");
+	 				};
+	 			}
+	 			if(Op == 4) {
+	 				if(monster4.HealthGet()>0){
+	 					int Damage =   rng.Dice0_20s2() + bonusdamage;
+	 					monster4.HitRecieve(Damage);
+	 					System.out.println("You attacked and dealt"+ "  "+  Damage+"  "    + "damage"); 
+	 					if(monster4.HealthGet()<=0){
+	 						monster4.dead();
+	 						numMobsAct=numMobsAct-1;
+	 					};
+	 					encounter = encounter + 1;
+	 				}else{
+	 					System.out.println("Its already dead");
+	 				};
+	 			}
 				 
 			} 
 	 		 
-	  		{ 
-	 			 
+	  		if(bobby==2){ 
 	 			System.out.println("What kind of spell?"); 
 	 			System.out.println("1.   Damage Spell"); 
 	 			System.out.println("2.   Healing Spell");
 	 			int boy = input.nextInt(); 
 		int boi = boy; 
-		         if(Rescources > 29)
+		        // if(Rescources > 29)
 		         {
  			      if(boi == 1) 
- 			      { System.out.println("Which Opponent?");
- 		 			System.out.println("1.   First Target");
- 		 			System.out.println("2.   Second Target");
- 		 			System.out.println("3.   Third Target");
- 		 			System.out.println("4.   Fourth Target");
- 		 			int Damage =   rng.Dice0_20s2() + 10;
- 			 		
-				    	  System.out.println("You attacked and dealt"+  PH  +  WeaponDamage  +  "Damage"); 
-	 			    	  encounter = encounter + 1; 
-	 			    	  Rescources = Rescources - 30;
+ 			      { 
+ 		 			
+ 		 				 spelldam = spelldam + rng.Dice0_20s2() + 10; ;
+				    	 System.out.println("You attacked and dealt"+ " "+     spelldam + " "+  "Damage"); 
+				    	 monster1.HitRecieve(spelldam);
+				    	 monster2.HitRecieve(spelldam);
+				    	 monster3.HitRecieve(spelldam);
+				    	 monster4.HitRecieve(spelldam);
+	 			    	 encounter = encounter + 1; 
+	 			    	 Rescources = Rescources - 30;
+	 			    	 if(Rescources < 0){
+	 			    		 System.out.println("You fainted");
+	 			    		System.out.println("GAME OVER, YOU WENT THROUGH"+"  "+  rooms  +"  "+"ROOMS");
+	 			    	 }
 		      } 
 	 			System.out.println("2.   Healing Spell"); 
 	 			      if(boi == 2) 
@@ -95,14 +232,10 @@ public class PTR {
 	 			    	  Rescources = Rescources - 30;
 	 			      } 
 	 			 
-	 			     if(Rescources < 29)
-	 		  		 {
-	 		  			 System.out.println("You don't have enough Rescources.");
-	 		  			 
-	 		  		 }
+	 			     
 	 		}
-	  		}
-	  		 
+	 	    
+	  		} 
 	 		 
 	 		if(bob == 3) 
 	 		{ 
@@ -135,22 +268,19 @@ public class PTR {
 	 
 	 		  		if(encounter == 1) 
 			{ 
-	 			System.out.println("You were attacked and you took"+"  "+  PH   +"  "+"Damage"); 
-				Health = Health - PH; 
+	 			int MobDmg=monster1.DamageGet() + monster2.DamageGet() + monster3.DamageGet() + monster4.DamageGet();
+	 		  	System.out.println("You were attacked and you took"+"  "+  MobDmg   +"  "+"Damage"); 
+				Health = Health - MobDmg; 
 				 
 	 			encounter = encounter - 1; 
 	 			 
-	 if(Health <= 0) 
-	 { 
-	 	System.out.println("GAME OVER, YOU WENT THROUGH"+"  "+  rooms  +"  "+"ROOMS"); 
-	 	encounter = encounter + 1; 
- } 
+	  
 	 
 	 
 	 		} 
-	 
+			}while(numMobsAct!=0);
 	
-	if(looot == 1)
+	/*if(looot == 1)
 	 {
 		chest = chest + 1; 
 		 
@@ -171,7 +301,7 @@ public class PTR {
 	         	 chest = chest - 1; 
 	         	   
           } 
-	 	} 
+	 	}*/ 
 	 
 	 
 	 
@@ -194,6 +324,9 @@ public class PTR {
 
 		private static RNG Dice0_20s2() {
 			// TODO Auto-generated method stub
+			return null;
+		}
+		private static RNG Dice0_100s1(){
 			return null;
 		} 
 	 } 

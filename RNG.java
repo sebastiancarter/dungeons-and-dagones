@@ -14,6 +14,10 @@ public class RNG {
 		num=Dice.nextInt(11)*10;
 		return(num);
 	};
+	int Dice1_100s1() { //random 0-100 steps of 1
+		num=Dice.nextInt(100)+1;
+		return(num);
+	};
 	
 	int Dice0_20s2() { //random 0-20 steps of 2
 		num=Dice.nextInt(11)*2;
@@ -42,6 +46,11 @@ public class RNG {
 	
 	int Dice1_50s1() {
 		num=Dice.nextInt(50)+1;
+		return(num);
+	};
+	
+	int Dice1_10s1() { //random 0-9 steps of 1
+		num=Dice.nextInt(10)+1;
 		return(num);
 	};
 
@@ -98,3 +107,111 @@ public class RNG {
 
 
 //PRAISE BE TO RNGESUS FOR HE SHALL BE OUR SAVIOR!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
