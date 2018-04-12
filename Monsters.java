@@ -43,7 +43,7 @@ public class Monsters {
 				num = stuff.Dice1_100s1();
 				
 				//TYPE 1 GRUNT
-				if(num > 0 && num < 40 )
+				if(num >= 0 && num < 40 )
 				{
 					Damage = 8;
 					Health = 20;
@@ -51,7 +51,7 @@ public class Monsters {
 				}
 				
 				//TYPE 2 WARRIOR
-				if(num > 40 && num < 65)
+				if(num >= 40 && num < 65)
 				{
 					Damage = 10;
 					Health = 50;
@@ -59,7 +59,7 @@ public class Monsters {
 				}
 				
 				//TYPE 3 CASTER
-				if(num > 65 && num < 90)
+				if(num >= 65 && num < 90)
 				{
 					Damage = 20;
 					Health = 30;
@@ -75,7 +75,7 @@ public class Monsters {
 				}
 				*/
 				//TYPE 5 EPIC
-				if(num > 90 && num < 101)
+				if(num >= 90 && num < 101)
 				{
 					Damage = 34;
 					Health = 100;

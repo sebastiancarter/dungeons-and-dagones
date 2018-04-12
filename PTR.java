@@ -18,7 +18,9 @@ public class PTR {
 	 	int WeaponDamage = 2; 
 	 	int chest = 0; 
 		int rooms = 0;
-		int bonusdamage = 10;
+		int bonusdamage = 20;
+		int hpPots = 5;
+		int rsPots = 5;
 	 	RNG rng;
 	 	rng = new RNG();
 	 	int looot = 0;
@@ -86,21 +88,28 @@ public class PTR {
 				
 			};
 			do{
-			if(Health <= 0) 
+			if(Health <= 0 || Rescources <= 0) 
 			 { 
 			 	System.out.println("GAME OVER, YOU WENT THROUGH"+"  "+  rooms  +"  "+"ROOMS"); 
-			 	encounter = encounter + 1; 
-			 }
+			 	encounter = encounter + 1;
+			 	numMobsAct = 0;
+			 }else{
 			input = new Scanner(System.in); 
- 		System.out.println("Menu"); 
-	 		System.out.println("1.  Attack"); 
+			System.out.println("Menu");
+			System.out.println("Room number: " + rooms);
+			System.out.println("You are facing "+numMobsAct+" monsters");
+			System.out.println("Monster 1 Health: " + monster1.HealthGet() );
+			System.out.println("Monster 2 Health: " + monster2.HealthGet() ); 
+			System.out.println("Monster 3 Health: " + monster3.HealthGet() );
+			System.out.println("Monster 4 Health: " + monster4.HealthGet() );
+			System.out.println("1.  Attack"); 
 			System.out.println("2.  Spell"); 
 	 		System.out.println("3.  Potion"); 
 	 		System.out.println("Health ="+ Health); 
 			System.out.println("Rescources ="+ Rescources);
-			System.out.println("You are facing "+numMobsAct+" monsters");
-	 		 
-			 
+			
+			
+			
 			int bob = input.nextInt(); 
 	 		int bobby = bob;
 	 		
@@ -204,29 +213,48 @@ public class PTR {
 	 			System.out.println("What kind of spell?"); 
 	 			System.out.println("1.   Damage Spell"); 
 	 			System.out.println("2.   Healing Spell");
-	 			int boy = input.nextInt(); 
-		int boi = boy; 
+	 			int boyy = input.nextInt(); 
+		int boii = boyy; 
 		        // if(Rescources > 29)
 		         {
- 			      if(boi == 1) 
+ 			      if(boii == 1) 
  			      { 
  		 			
- 		 				 spelldam = spelldam + rng.Dice0_20s2() + 10; ;
+ 		 				 spelldam = rng.Dice0_20s2() + 15; ;
 				    	 System.out.println("You attacked and dealt"+ " "+     spelldam + " "+  "Damage"); 
-				    	 monster1.HitRecieve(spelldam);
-				    	 monster2.HitRecieve(spelldam);
-				    	 monster3.HitRecieve(spelldam);
-				    	 monster4.HitRecieve(spelldam);
+				    	 if(monster1.HealthGet()>0){
+				    		 monster1.HitRecieve(spelldam);
+				    		 if(monster1.HealthGet()<=0){
+			 						monster1.dead();
+			 						numMobsAct=numMobsAct-1;
+			 					};
+				    	 };
+				    	 if(monster2.HealthGet()>0){
+				    		 monster2.HitRecieve(spelldam);
+				    		 if(monster2.HealthGet()<=0){
+			 						monster2.dead();
+			 						numMobsAct=numMobsAct-1;
+			 					};
+				    	 };
+				    	 if(monster3.HealthGet()>0){
+				    		 monster3.HitRecieve(spelldam);
+				    		 if(monster3.HealthGet()<=0){
+			 						monster3.dead();
+			 						numMobsAct=numMobsAct-1;
+			 					};
+				    	 };
+				    	 if(monster4.HealthGet()>0){
+				    		 monster4.HitRecieve(spelldam);
+				    		 if(monster4.HealthGet()<=0){
+			 						monster4.dead();
+			 						numMobsAct=numMobsAct-1;
+			 					};
+				    	 };
 	 			    	 encounter = encounter + 1; 
 	 			    	 Rescources = Rescources - 30;
-	 			    	 if(Rescources < 0){
-	 			    		 System.out.println("You fainted");
-	 			    		System.out.println("GAME OVER, YOU WENT THROUGH"+"  "+  rooms  +"  "+"ROOMS");
-	 			    	 }
-		      } 
-	 			System.out.println("2.   Healing Spell"); 
-	 			      if(boi == 2) 
-		      { 
+		     	} 
+	 			      if(boii == 2) 
+	 			      { 
 	 			    	  System.out.println("You casted and healed"+" "+"15"+ " "+"Health"); 
 	 			    	  Health = Health + 15; 
 	 			    	  Rescources = Rescources - 30;
@@ -240,33 +268,40 @@ public class PTR {
 	 		if(bob == 3) 
 	 		{ 
 	 			 
-				System.out.println("What Type of Potion?"); 
-	 			System.out.println("1.    Rescource Potion"); 
-	 			System.out.println("2.    Health Potion"); 
+			    System.out.println("What Type of Potion?"); 
+	 			System.out.println("1.    Rescource Potion: " + rsPots); 
+	 			System.out.println("2.    Health Potion: " + hpPots); 
 	 			int boy = input.nextInt(); 
 				int boi = boy; 
-				if(boi == 1); 
+				if(boi == 1) 
 				{ 
-	 				System.out.println("you drank a Rescource potion and got 25 Rescource"); 
-	 				Rescources = Rescources + 25; 
-	 				encounter = encounter + 1; 
+	 				if(rsPots>0){
+					System.out.println("you drank a Rescource potion and got 25 Rescource"); 
+	 				Rescources = Rescources + 25;
+	 				rsPots=rsPots-1;
+	 				encounter = encounter + 1;
+	 				}else{
+	 					System.out.println("Your out of that potion");
+	 				}
 	 			} 
-	 			if(boi == 2); 
+	 			if(boi == 2) 
 	 			{ 
+	 				if(hpPots>0){
 	 				System.out.println("you drank a health potion and recovered 25 Health"); 
-				 Health = Health + 25; 
-	 				 encounter = encounter + 1; 
-			} 
+	 				Health = Health + 25;
+	 				hpPots=hpPots-1;
+	 				encounter = encounter + 1; 
+	 				}else{
+	 					System.out.println("Your out of that potion");
+	 				}
+	 			} 
 	 			 
 	 			 
 			} 
+	 		
+	 
+	 
 	 		if(encounter == 1) 
-	 		{ 
-	 			rooms = rooms + 1; 
-	 		} 
-	 
-	 
-	 		  		if(encounter == 1) 
 			{ 
 	 			int MobDmg=monster1.DamageGet() + monster2.DamageGet() + monster3.DamageGet() + monster4.DamageGet();
 	 		  	System.out.println("You were attacked and you took"+"  "+  MobDmg   +"  "+"Damage"); 
@@ -278,8 +313,13 @@ public class PTR {
 	 
 	 
 	 		} 
+			 }
 			}while(numMobsAct!=0);
-	
+			if(Health > 0 && Rescources > 0)
+			{
+			rooms = rooms + 1;
+			System.out.println("You moved on to the next room");
+			}
 	/*if(looot == 1)
 	 {
 		chest = chest + 1; 
@@ -306,7 +346,7 @@ public class PTR {
 	 
 	 
 	 
- }while(encounter != 1); 
+ }while(Health > 0 && Rescources > 0); 
 	 
 	 
 	 	 
